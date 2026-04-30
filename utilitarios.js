@@ -1,6 +1,3 @@
-document.getElementById("btn1").onclick = () => mostrarSeccion();
-document.getElementById("btn2").onclick = () => mostrarSeccion();
-
 function recuperaraTexto(idComponente){
     let componente;
     let valorIngresado;

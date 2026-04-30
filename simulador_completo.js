@@ -9,6 +9,8 @@
   let plazoCalculado = 0;
   let creditoAprobado = false;
 
+  document.getElementById("btn1").onclick = () => limpiar();
+
   function ocultarSecciones(){
     let seccion = document.querySelectorAll("section");
 
@@ -30,6 +32,110 @@
     }else{
       mostrarTexto("mensajeTasa", "La tasa debe estar ente 10% y 20%");
     }
+  }
+
+  function guardarCliente(){
+    let cedula = recuperarInt("input1");
+    let nombre = recuperaraTexto("input2");
+    let apellido = recuperaraTexto("input3");
+    let ingreso = recuperarFloat("input4");
+    let egreso = recuperarFloat("input5");
+    if(clienteSeleccionado == null){
+
+      let cliente = {
+        cedula: cedula,
+        nombre: nombre,
+        apellido: apellido,
+        ingreso: ingreso,
+        egreso: egreso
+      };
+      clientes.push(cliente);
+    }else{
+      clienteSeleccionado.nombre = nombre;
+      clienteSeleccionado.apellido = apellido;
+      clienteSeleccionado.ingreso = ingreso;
+      clienteSeleccionado.egreso = egreso;
+    }
+
+    clienteSeleccionado == null;
+    limpiar();
+    pintarCliente();
+  }
+
+  function limpiar(){
+    mostrarTextoEnCaja("input1", "");
+    mostrarTextoEnCaja("input2", "");
+    mostrarTextoEnCaja("input3", "");
+    mostrarTextoEnCaja("input4", "");
+    mostrarTextoEnCaja("input5", "");
+  }
+
+  function pintarCliente(){
+    let tabla = document.getElementById("tablaClientes");
+
+    tabla.innerHTML = "";
+
+    clientes.forEach(cliente => {
+      let fila = 
+      "<tr>" +
+      "<td>" + cliente.cedula + "</td>" +
+      "<td>" + cliente.nombre + "</td>" +
+      "<td>" + cliente.apellido + "</td>" +
+      "<td>" + cliente.ingreso + "</td>" +
+      "<td>" + cliente.egreso + "</td>" +
+      "<td>"+
+      "<button onclick='seleccionarCliente("+ cliente.cedula +")'>Actualizar</button>"+
+      "<button onclick='eliminar("+ cliente.cedula +")'>Eliminar</button>"+
+      "</td>"+
+      "</tr>";
+
+      tabla.innerHTML += fila;
+    });
+  }
+
+  function buscarCliente(cedula){
+    //return clientes.find(cliente => cliente.cedula === cedula) || null;
+    let clienteEncontrado = null;
+
+    clientes.forEach(cliente => {
+      if(cliente.cedula === cedula){
+        clienteEncontrado = cliente;
+      }
+    });
+    return clienteEncontrado;
+  }
+
+  function seleccionarCliente(cedula){
+    let cliente = buscarCliente(cedula);
+    if (cliente != null) {
+      clienteSeleccionado = cliente;
+
+      mostrarTextoEnCaja("input1", cliente.cedula);
+      mostrarTextoEnCaja("input2", cliente.nombre);
+      mostrarTextoEnCaja("input3", cliente.apellido);
+      mostrarTextoEnCaja("input4", cliente.ingreso);
+      mostrarTextoEnCaja("input5", cliente.egreso);
+
+    }else{
+      console.log("Cliente no encontrado");
+    }
+  }
+
+  function eliminar(cedula){
+
+      let indice = -1;
+
+      clientes.forEach((cliente, i) => {
+          if(cliente.cedula == cedula){
+              indice = i;
+          }
+      });
+
+      if(indice != -1){
+          clientes.splice(indice, 1);
+      }
+
+      pintarCliente();
   }
   
 //Para recuperar o mostrar información usar los métodos de la clase utilitarios, puede agregar métodos adicionales en utilitarios
