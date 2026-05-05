@@ -28,6 +28,7 @@
     let num = recuperarFloat("tasaInteres");
 
     if(num >= 10 && num <= 20){
+      tasaInteres = num;
       mostrarTexto("mensajeTasa", "tasa configurada correctamente: "+ num +"%");
     }else{
       mostrarTexto("mensajeTasa", "La tasa debe estar ente 10% y 20%");
@@ -57,9 +58,11 @@
       clienteSeleccionado.egreso = egreso;
     }
 
-    clienteSeleccionado == null;
+    clienteSeleccionado = null;
     limpiar();
-    pintarCliente();
+    pintarCliente()
+
+    document.getElementById("btnG").textContent = "Guardar cliente";
   }
 
   function limpiar(){
@@ -94,15 +97,7 @@
   }
 
   function buscarCliente(cedula){
-    //return clientes.find(cliente => cliente.cedula === cedula) || null;
-    let clienteEncontrado = null;
-
-    clientes.forEach(cliente => {
-      if(cliente.cedula === cedula){
-        clienteEncontrado = cliente;
-      }
-    });
-    return clienteEncontrado;
+    return clientes.find(cliente => cliente.cedula === cedula) || null;
   }
 
   function seleccionarCliente(cedula){
@@ -115,6 +110,8 @@
       mostrarTextoEnCaja("input3", cliente.apellido);
       mostrarTextoEnCaja("input4", cliente.ingreso);
       mostrarTextoEnCaja("input5", cliente.egreso);
+
+      document.getElementById("btnG").textContent = "Actualizar Cliente";
 
     }else{
       console.log("Cliente no encontrado");
@@ -138,4 +135,62 @@
       pintarCliente();
   }
   
+
+  function buscarClienteCredito(){
+    let cedulaCliente = recuperarInt("cedulaCredito");
+    let clienteCredito = clientes.find(cedulaC => cedulaC.cedula == cedulaCliente);
+    let contenedor = document.getElementById("clienteCredito");
+
+    if(clienteCredito){
+      clienteSeleccionado = clienteCredito;
+
+      contenedor.innerHTML = "<h3>Datos del Cliente</h3>" +
+                             "<p><strong>Cédula:</strong>"+ clienteCredito.cedula +"</p>"+
+                             "<p><strong>Nombre:</strong>"+ clienteCredito.nombre +"</p>"+
+                             "<p><strong>Apellido:</strong>"+ clienteCredito.apellido +"</p>"+
+                             "<p><strong>Ingresos:</strong>"+ clienteCredito.ingreso +"</p>"+
+                             "<p><strong>Egresos:</strong>"+ clienteCredito.egreso +"</p>";
+    }else{
+      contenedor.innerHTML = "<p>Cliente no encontrado</p>";
+      clienteSeleccionado = null;
+    }
+  }
+
+  function calcularCredito(){
+
+  if(clienteSeleccionado == null){
+    document.getElementById("resultadoCredito").innerHTML = "Seleccione un cliente primero";
+    return;
+  }
+
+  let monto = recuperarFloat("montoCredito");
+  let plazo = recuperarInt("plazoCredito");
+
+  let disponible = calcularDisponible(clienteSeleccionado.ingreso, clienteSeleccionado.egreso);
+
+  let capacidad = calcularCapacidadDePago(disponible);
+
+  let interes = calcularInteresSimple(monto, tasaInteres, plazo);
+
+  let total = calcularTotalPagar(monto, interes);
+
+  let cuota = calcularCuotaMensual(total, plazo);
+
+  let resultado = aprobarCredito(capacidad, cuota);
+
+  let contenedor = document.getElementById("resultadoCredito");
+
+  contenedor.innerHTML =
+    "Capacidad de pago: " + capacidad + "<br>" +
+    "Total a pagar: " + total + "<br>" +
+    "Cuota mensual: " + cuota + "<br>" +
+    "RESULTADO: " + resultado;
+
+  if(resultado === "CRÉDITO APROBADO"){
+    contenedor.className = "aprobado";
+  }else{
+    contenedor.className = "rechazado";
+  }
+}
+
 //Para recuperar o mostrar información usar los métodos de la clase utilitarios, puede agregar métodos adicionales en utilitarios

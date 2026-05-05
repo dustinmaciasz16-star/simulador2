@@ -14,6 +14,7 @@
 <nav>
   <button onclick="mostrarSeccion('parametros');">Parámetros</button>
   <button onclick="mostrarSeccion('clientes');">Clientes</button>
+  <button onclick="mostrarSeccion('creditos');">Créditos</button>
 </nav>
 
 <section id="parametros">
@@ -40,7 +41,7 @@
 
   <br>
 
-  <button onclick="guardarCliente();">Guardar cliente</button>
+  <button id="btnG" onclick="guardarCliente();">Guardar cliente</button>
   <button id="btn1">Limpiar</button>
 
   <table>
@@ -60,9 +61,31 @@
   </table>
 </section>
 
+<section id="creditos">
+  <h2>Simulacion de Credito</h2>
+
+  <input type="text" id="cedulaCredito" placeholder="Ingrese la cedula">
+  <button onclick="buscarClienteCredito();">Buscra Clinete</button>
+
+  <div id="clienteCredito"></div>
+  <br>
+
+  <hr>
+
+  <br>
+
+  <input type="number" id="montoCredito" placeholder="Monto del crédito">
+  <input type="number" id="plazoCredito" placeholder="Plazo (meses)">
+  
+  <button onclick="calcularCredito()">Calcular Crédito</button>
+
+  <div id="resultadoCredito"></div>
+</section>
+
 
 
 <script src="simulador_completo.js"></script>
+<script src="simulador_funciones.js"></script>
 <script src="utilitarios.js"></script>
 </body>
 </html>
