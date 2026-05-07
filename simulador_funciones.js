@@ -17,7 +17,7 @@ function calcularTotalPagar(monto, interes){
 }
 
 function calcularCuotaMensual(total, plazo){
-    return total / (plazo * 12);
+    return total / plazo;
 }
 
 function aprobarCredito(capacidad, cuota){

@@ -141,7 +141,7 @@
     let clienteCredito = clientes.find(cedulaC => cedulaC.cedula == cedulaCliente);
     let contenedor = document.getElementById("clienteCredito");
 
-    if(clienteCredito){
+    if(clienteCredito != null){
       clienteSeleccionado = clienteCredito;
 
       contenedor.innerHTML = "<h3>Datos del Cliente</h3>" +
