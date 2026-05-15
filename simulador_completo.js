@@ -178,6 +178,10 @@
 
   let resultado = aprobarCredito(capacidad, cuota);
 
+  cuotaCalculada = cuota;
+  montoCalculado = monto;
+  plazoCalculado = plazo;
+
   let contenedor = document.getElementById("resultadoCredito");
 
   contenedor.innerHTML =
@@ -188,9 +192,73 @@
 
   if(resultado === "CRÉDITO APROBADO"){
     contenedor.className = "aprobado";
+    document.getElementById("asignar").disabled = false;
   }else{
     contenedor.className = "rechazado";
+    document.getElementById("asignar").disabled = true;
   }
+}
+
+function asignarCredito(){
+
+  let credito = {
+
+    cedula: clienteSeleccionado.cedula,
+    nombre: clienteSeleccionado.nombre,
+    apellido: clienteSeleccionado.apellido,
+    monto: montoCalculado,
+    tasa: tasaInteres,
+    plazo: plazoCalculado,
+    cuota: cuotaCalculada
+
+  };
+
+  creditos.push(credito);
+
+  alert("Crédito asignado correctamente");
+
+}
+
+function buscarCreditos(cedula){
+
+  let creditosEncontrados = creditos.filter(credito => credito.cedula == cedula);
+
+  return creditosEncontrados;
+
+}
+
+function pintarCreditos(listaCreditos){
+
+  let tabla = document.getElementById("tablaCreditos");
+
+  tabla.innerHTML = "";
+
+  listaCreditos.forEach(credito => {
+
+    let fila =
+    "<tr>" +
+      "<td>" + credito.cedula + "</td>" +
+      "<td>" + credito.nombre + "</td>" +
+      "<td>" + credito.apellido + "</td>" +
+      "<td>" + credito.monto + "</td>" +
+      "<td>" + credito.tasa + "</td>" +
+      "<td>" + credito.plazo + "</td>" +
+      "<td>" + credito.cuota + "</td>" +
+    "</tr>";
+
+    tabla.innerHTML += fila;
+
+  });
+
+}
+function buscarCreditosCliente(){
+
+  let cedula = recuperarInt("cedulaBusqueda");
+
+  let creditosEncontrados = buscarCreditos(cedula);
+
+  pintarCreditos(creditosEncontrados);
+
 }
 
 //Para recuperar o mostrar información usar los métodos de la clase utilitarios, puede agregar métodos adicionales en utilitarios

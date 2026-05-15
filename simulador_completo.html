@@ -15,6 +15,7 @@
   <button onclick="mostrarSeccion('parametros');">Parámetros</button>
   <button onclick="mostrarSeccion('clientes');">Clientes</button>
   <button onclick="mostrarSeccion('creditos');">Créditos</button>
+  <button onclick="mostrarSeccion('historial')">Créditos Registrados</button>
 </nav>
 
 <section id="parametros">
@@ -80,6 +81,44 @@
   <button onclick="calcularCredito()">Calcular Crédito</button>
 
   <div id="resultadoCredito"></div>
+
+  <button id="asignar" onclick="asignarCredito();" disabled>Asignar Crédito</button>
+</section>
+
+<section id="historial">
+
+  <h2>Historial de Créditos</h2>
+
+  <input type="text" id="cedulaBusqueda" placeholder="Buscar por cédula">
+
+  <button onclick="buscarCreditosCliente()">
+    Buscar Créditos
+  </button>
+
+  <button onclick="pintarCreditos(creditos)">
+    Mostrar Todos
+  </button>
+
+  <table>
+
+    <thead>
+      <tr>
+        <th>Cédula</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Monto</th>
+        <th>Tasa</th>
+        <th>Plazo</th>
+        <th>Cuota</th>
+      </tr>
+    </thead>
+
+    <tbody id="tablaCreditos">
+
+    </tbody>
+
+  </table>
+
 </section>
 
 
