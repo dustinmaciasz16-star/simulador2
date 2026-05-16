@@ -39,14 +39,16 @@
     let cedula = recuperarInt("input1");
     let nombre = recuperaraTexto("input2");
     let apellido = recuperaraTexto("input3");
-    let ingreso = recuperarFloat("input4");
-    let egreso = recuperarFloat("input5");
+    let email = recuperaraTexto("input4");
+    let ingreso = recuperarFloat("input5");
+    let egreso = recuperarFloat("input6");
     if(clienteSeleccionado == null){
 
       let cliente = {
         cedula: cedula,
         nombre: nombre,
         apellido: apellido,
+        email: email,
         ingreso: ingreso,
         egreso: egreso
       };
@@ -54,6 +56,7 @@
     }else{
       clienteSeleccionado.nombre = nombre;
       clienteSeleccionado.apellido = apellido;
+      clienteSeleccionado.email = email;
       clienteSeleccionado.ingreso = ingreso;
       clienteSeleccionado.egreso = egreso;
     }
@@ -71,6 +74,7 @@
     mostrarTextoEnCaja("input3", "");
     mostrarTextoEnCaja("input4", "");
     mostrarTextoEnCaja("input5", "");
+    mostrarTextoEnCaja("input6", "");
   }
 
   function pintarCliente(){
@@ -84,6 +88,7 @@
       "<td>" + cliente.cedula + "</td>" +
       "<td>" + cliente.nombre + "</td>" +
       "<td>" + cliente.apellido + "</td>" +
+      "<td>" + cliente.email + "</td>" +
       "<td>" + cliente.ingreso + "</td>" +
       "<td>" + cliente.egreso + "</td>" +
       "<td>"+
@@ -108,8 +113,9 @@
       mostrarTextoEnCaja("input1", cliente.cedula);
       mostrarTextoEnCaja("input2", cliente.nombre);
       mostrarTextoEnCaja("input3", cliente.apellido);
-      mostrarTextoEnCaja("input4", cliente.ingreso);
-      mostrarTextoEnCaja("input5", cliente.egreso);
+      mostrarTextoEnCaja("input4", cliente.email);
+      mostrarTextoEnCaja("input5", cliente.ingreso);
+      mostrarTextoEnCaja("input6", cliente.egreso);
 
       document.getElementById("btnG").textContent = "Actualizar Cliente";
 
@@ -148,6 +154,7 @@
                              "<p><strong>Cédula:</strong>"+ clienteCredito.cedula +"</p>"+
                              "<p><strong>Nombre:</strong>"+ clienteCredito.nombre +"</p>"+
                              "<p><strong>Apellido:</strong>"+ clienteCredito.apellido +"</p>"+
+                             "<p><strong>Email:</strong>"+ clienteCredito.email +"</p>"+
                              "<p><strong>Ingresos:</strong>"+ clienteCredito.ingreso +"</p>"+
                              "<p><strong>Egresos:</strong>"+ clienteCredito.egreso +"</p>";
     }else{
