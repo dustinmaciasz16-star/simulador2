@@ -268,4 +268,5 @@ function buscarCreditosCliente(){
 
 }
 
+document.getElementById("btnSolicitarCredito").disabled = resultado !== "CRÉDITO APROBADO" ? true : false;
 //Para recuperar o mostrar información usar los métodos de la clase utilitarios, puede agregar métodos adicionales en utilitarios
