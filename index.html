@@ -17,6 +17,7 @@
   <button onclick="mostrarSeccion('creditos');">Créditos</button>
   <button onclick="mostrarSeccion('historial')">Créditos Registrados</button>
   <button onclick="mostrarSeccion('contacto')">Contacto</button>
+  <button onclick="mostrarSeccion('acerca')">Acerca de</button>
 </nav>
 
 <section id="parametros">
@@ -39,6 +40,7 @@
   <input id="input2" type="text" placeholder="Nombre">
   <input id="input3" type="text" placeholder="Apellido">
   <input id="input4" type="text" placeholder="email">
+  <input id="input7" type="text" placeholder="telefono">
   <input id="input5" type="number" placeholder="Ingresos">
   <input id="input6" type="number" placeholder="Egresos">
 
@@ -54,6 +56,7 @@
         <th>Nombre</th>
         <th>Apellido</th>
         <th>Email</th>
+        <th>Teléfono</th>
         <th>Ingresos</th>
         <th>Egresos</th>
         <th>Acciones</th>
@@ -69,7 +72,7 @@
   <h2>Simulacion de Credito</h2>
 
   <input type="text" id="cedulaCredito" placeholder="Ingrese la cedula">
-  <button onclick="buscarClienteCredito();">Buscra Clinete</button>
+  <button onclick="buscarClienteCredito();">Buscar Cliente</button>
 
   <div id="clienteCredito"></div>
   <br>
@@ -79,9 +82,12 @@
   <br>
 
   <input type="number" id="montoCredito" placeholder="Monto del crédito">
+  <input type="number" id="montoMaximo">
   <input type="number" id="plazoCredito" placeholder="Plazo (meses)">
   
   <button onclick="calcularCredito()">Calcular Crédito</button>
+  <button onclick="guardarMontoMaximo()">Monto Máximo</button>
+  <button onclick="mostrarCreditoVip()">CréditoVIP</button>
 
   <div id="resultadoCredito"></div>
 
@@ -109,6 +115,8 @@
         <th>Cédula</th>
         <th>Nombre</th>
         <th>Apellido</th>
+        <th>Email</th>
+        <th>Teléfono</th>
         <th>Monto</th>
         <th>Tasa</th>
         <th>Plazo</th>
@@ -126,6 +134,16 @@
 
 <section id="contacto">
   <h2>Desarrollado por Dustin Macias</h2>
+</section>
+
+<section id="acerca">
+  <h2>Acerca de</h2>
+  <p>Este es un sistema básico de gestión de créditos.</p>
+  <p>Desarrollado por Dustin Macias</p>
+  <p>Instagram: @dustinmacias</p>
+  <p>tiktok: @dustinmacias</p>
+  <p>frase: El éxito no es la clave de la felicidad, sino que la felicidad es la clave del éxito.</p>
+  <p>frase de programación: La programación es el arte de convertir el caos en orden.</p>
 </section>
 
 

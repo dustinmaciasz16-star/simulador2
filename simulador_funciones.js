@@ -21,5 +21,5 @@ function calcularCuotaMensual(total, plazo){
 }
 
 function aprobarCredito(capacidad, cuota){
-    return capacidad >= cuota ? "CRÉDITO APROBADO" : "CRÉDITO RECHAZADO";
+    return capacidad >= cuota * 0.7 ? "CRÉDITO APROBADO" : "CRÉDITO RECHAZADO";
 }
